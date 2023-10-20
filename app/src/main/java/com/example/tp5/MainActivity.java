@@ -58,15 +58,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 String tacheTime = String.format("%02d:%02d", heure, minutes); // Format "heures:minutes"
                 String tacheName = tacheEditText.getText().toString();
                 String tacheJour = spinner.getSelectedItem().toString();
-                Tache t = new Tache(tacheName,tacheJour,tacheTime);
-                tachesList.add(t);
+                if(tacheJour.isEmpty()){
+                    Toast.makeText(MainActivity.this, "Entrer le jour de tache svp", Toast.LENGTH_SHORT).show();
+                } else if (tacheName.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Entrer le nom de tache svp", Toast.LENGTH_SHORT).show();
+                } else if (tacheTime.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Entrer le temps de tache svp", Toast.LENGTH_SHORT).show();
+                }else{
+                    Tache t = new Tache(tacheName,tacheJour,tacheTime);
+                    tachesList.add(t);
 
-                String textTaches = "";
-                for (Tache tache : tachesList) {
-                    textTaches += tache.getTachename() + " le " + tache.getTachejour() + " à " + tache.getTachetime() + "\n";
+                    String textTaches = "";
+                    for (Tache tache : tachesList) {
+                        textTaches += tache.getTachename() + " le " + tache.getTachejour() + " à " + tache.getTachetime() + "\n";
+                    }
+                    taches.setText("(   )   "+textTaches);
                 }
-                taches.setText(textTaches);
-
             }
         });
 
