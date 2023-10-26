@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
@@ -44,11 +43,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setOnItemSelectedListener(this);
         /*---------------------------------------*/
 
-
-        add = findViewById(R.id.button);
+        add= binding.button;
+        taches = binding.textView2;
+        tacheEditText = binding.textView;
+        timePicker = binding.timePicker;
+        /*add = findViewById(R.id.button);
         taches = findViewById(R.id.textView2);
         tacheEditText = findViewById(R.id.textView);
-        timePicker = findViewById(R.id.timePicker);
+        timePicker = findViewById(R.id.timePicker);*/
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 String tacheName = tacheEditText.getText().toString();
                 String tacheJour = spinner.getSelectedItem().toString();
                 if(tacheJour.isEmpty()){
-                    Toast.makeText(MainActivity.this, "Entrer le jour de tache svp", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"Entrer le jour de tache svp", Toast.LENGTH_SHORT).show();
                 } else if (tacheName.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Entrer le nom de tache svp", Toast.LENGTH_SHORT).show();
                 } else if (tacheTime.isEmpty()) {
@@ -67,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }else{
                     Tache t = new Tache(tacheName,tacheJour,tacheTime);
                     tachesList.add(t);
-
                     String textTaches = "";
                     for (Tache tache : tachesList) {
                         textTaches += tache.getTachename() + " le " + tache.getTachejour() + " à " + tache.getTachetime() + "\n";
