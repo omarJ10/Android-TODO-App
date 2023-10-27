@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <EditText
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -13,22 +14,20 @@
         android:hint="Entrer tache pour cette semaines"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.037" />
-
+        app:layout_constraintVertical_bias="0.023" />
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="152dp"
+        android:layout_width="121dp"
         android:layout_height="53dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="239dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="121dp"
+        android:layout_marginBottom="240dp"
+        app:layout_constraintBottom_toTopOf="@+id/rv"
         app:layout_constraintEnd_toStartOf="@+id/timePicker"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -36,36 +35,44 @@
         android:id="@+id/timePicker"
         android:layout_width="257dp"
         android:layout_height="191dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="1dp"
         android:timePickerMode="spinner"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spinner"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="137dp"
-        android:layout_marginBottom="152dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="73dp"
+        android:layout_marginEnd="118dp"
         android:text="Ajouter Tache"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rv"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timePicker" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="361dp"
-        android:layout_height="193dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="12dp"
-        android:text="TextView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="409dp"
+        android:layout_height="255dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="1.0" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

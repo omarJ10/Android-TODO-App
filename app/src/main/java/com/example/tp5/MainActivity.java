@@ -1,6 +1,7 @@
 package com.example.tp5;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -27,13 +29,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     EditText tacheEditText;
     TimePicker timePicker ;
     ArrayList<Tache> tachesList = new ArrayList<>();
+    AdapterTache adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*----------------- Binding -----------------*/
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        /*--------------------------------------------*/
+        adapter = new AdapterTache(tachesList);
+        binding.rv.setHasFixedSize(true);
+        LinearLayoutManager l = new LinearLayoutManager(MainActivity.this);
+        binding.rv.setLayoutManager(l);
+        binding.rv.setAdapter(adapter);
+
+
+        /*----------------- Binding -----------------*/
 
         /*----------------Spinner-----------------*/
         Spinner spinner = findViewById(R.id.spinner);
@@ -44,13 +57,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         /*---------------------------------------*/
 
         add= binding.button;
-        taches = binding.textView2;
+
         tacheEditText = binding.textView;
         timePicker = binding.timePicker;
-        /*add = findViewById(R.id.button);
+
+        /*
+        add = findViewById(R.id.button);
         taches = findViewById(R.id.textView2);
         tacheEditText = findViewById(R.id.textView);
-        timePicker = findViewById(R.id.timePicker);*/
+        timePicker = findViewById(R.id.timePicker);
+        */
 
 
         add.setOnClickListener(new View.OnClickListener() {
@@ -71,10 +87,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     Tache t = new Tache(tacheName,tacheJour,tacheTime);
                     tachesList.add(t);
                     String textTaches = "";
-                    for (Tache tache : tachesList) {
+
+                    adapter.notifyDataSetChanged();
+                    /*for (Tache tache : tachesList) {
                         textTaches += tache.getTachename() + " le " + tache.getTachejour() + " à " + tache.getTachetime() + "\n";
                     }
-                    taches.setText("(   )   "+textTaches);
+                    taches.setText("(   )   "+textTaches);*/
                 }
             }
         });
