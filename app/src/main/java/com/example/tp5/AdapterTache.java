@@ -1,6 +1,9 @@
 package com.example.tp5;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 
 public class AdapterTache extends RecyclerView.Adapter<AdapterTache.ViewHolderTache> {
     ArrayList<Tache> taches = new ArrayList<>();
+    Context context;
 
     public AdapterTache(ArrayList<Tache> L){
         this.taches = L;
@@ -27,6 +31,16 @@ public class AdapterTache extends RecyclerView.Adapter<AdapterTache.ViewHolderTa
     public void onBindViewHolder(@NonNull ViewHolderTache holder, int position) {
         Tache t = taches.get(position);
         holder.setTache(t);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), DetailsTache.class);
+                intent.putExtra("name",t.getTachename());
+                intent.putExtra("jour",t.getTachejour());
+                intent.putExtra("time",t.getTachetime());
+                v.getContext().startActivity(intent);
+            }
+        });
 
     }
 

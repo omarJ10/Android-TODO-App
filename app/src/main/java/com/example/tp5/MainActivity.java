@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         View view = binding.getRoot();
         setContentView(view);
         /*--------------------------------------------*/
+
         adapter = new AdapterTache(tachesList);
         binding.rv.setHasFixedSize(true);
         LinearLayoutManager l = new LinearLayoutManager(MainActivity.this);
@@ -57,18 +58,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         /*---------------------------------------*/
 
         add= binding.button;
-
         tacheEditText = binding.textView;
         timePicker = binding.timePicker;
-
-        /*
-        add = findViewById(R.id.button);
-        taches = findViewById(R.id.textView2);
-        tacheEditText = findViewById(R.id.textView);
-        timePicker = findViewById(R.id.timePicker);
-        */
-
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,12 +78,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     Tache t = new Tache(tacheName,tacheJour,tacheTime);
                     tachesList.add(t);
                     String textTaches = "";
-
                     adapter.notifyDataSetChanged();
-                    /*for (Tache tache : tachesList) {
-                        textTaches += tache.getTachename() + " le " + tache.getTachejour() + " à " + tache.getTachetime() + "\n";
-                    }
-                    taches.setText("(   )   "+textTaches);*/
                 }
             }
         });
